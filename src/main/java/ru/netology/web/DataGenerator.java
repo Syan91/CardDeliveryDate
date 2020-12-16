@@ -5,13 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
+
 @Data
 @NoArgsConstructor
 public class DataGenerator {
     public static String getRandomCity(){
-        Faker faker = new Faker(new Locale("ru"));
-        return faker.address().city();
+        List <String> list = Arrays.asList("Ростов-на-Дону", "Москва","Санкт-Петербург","Нижний Новгород","Краснодар");
+        Random rand = new Random();
+        String randomElement = list.get(rand.nextInt(list.size()));
+        return randomElement;
     }
     public static String getCorrectDate(int days){
         String date = LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
